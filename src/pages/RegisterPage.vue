@@ -26,6 +26,46 @@
       </b-form-group>
 
       <b-form-group
+        id="input-group-firstname"
+        label-cols-sm="3"
+        label="First Name:"
+        label-for="firstname"
+      >
+        <b-form-input
+          id="firstname"
+          v-model="$v.form.firstname.$model"
+          type="text"
+          :state="validateState('firstname')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.firstname.required">
+          First name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.firstname.alpha">
+          First Name alpha
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-lastname"
+        label-cols-sm="3"
+        label="Last Name:"
+        label-for="lastname"
+      >
+        <b-form-input
+          id="lastname"
+          v-model="$v.form.lastname.$model"
+          type="text"
+          :state="validateState('lastname')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.lastname.required">
+          Last name is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.lastname.alpha">
+          Last Name alpha
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group
         id="input-group-country"
         label-cols-sm="3"
         label="Country:"
@@ -66,6 +106,11 @@
         >
           Have length between 5-10 characters long
         </b-form-invalid-feedback>
+        
+        <b-form-invalid-feedback v-if="!$v.form.password.num_spaciel">
+          Password need at least one spaciel character and one number
+        </b-form-invalid-feedback>
+
       </b-form-group>
 
       <b-form-group
@@ -87,6 +132,26 @@
           v-else-if="!$v.form.confirmedPassword.sameAsPassword"
         >
           The confirmed password is not equal to the original password
+        </b-form-invalid-feedback>
+      </b-form-group>
+
+      <b-form-group
+        id="input-group-email"
+        label-cols-sm="3"
+        label="Email:"
+        label-for="email"
+      >
+        <b-form-input
+          id="email"
+          v-model="$v.form.email.$model"
+          type="text"
+          :state="validateState('email')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.email.required">
+          Email is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.email.email">
+          email format is required
         </b-form-invalid-feedback>
       </b-form-group>
 
@@ -127,7 +192,8 @@ import {
   maxLength,
   alpha,
   sameAs,
-  email
+  email,
+  integer
 } from "vuelidate/lib/validators";
 
 export default {
@@ -136,8 +202,8 @@ export default {
     return {
       form: {
         username: "",
-        firstName: "",
-        lastName: "",
+        firstname: "",
+        lastname: "",
         country: null,
         password: "",
         confirmedPassword: "",
@@ -156,16 +222,35 @@ export default {
         length: (u) => minLength(3)(u) && maxLength(8)(u),
         alpha
       },
+      firstname: {
+        required,
+        alpha
+      },
+      lastname: {
+        required,
+        alpha
+      },
       country: {
         required
       },
       password: {
         required,
-        length: (p) => minLength(5)(p) && maxLength(10)(p)
+        length: (p) => minLength(5)(p) && maxLength(10)(p),
+        num_spaciel: function(value) {
+          const containsNumber = /[0-9]/.test(value);
+          const containsSpecial = /[#?!@$%^&*()_-]/.test(value);
+          return (
+            containsNumber && containsSpecial
+          );
+        }
       },
       confirmedPassword: {
         required,
         sameAsPassword: sameAs("password")
+      },
+      email: {
+        required,
+        email
       }
     }
   },
@@ -189,8 +274,11 @@ export default {
 
           {
             username: this.form.username,
+            firstname: this.form.firstname,
+            lastname: this.form.lastname,
             password: this.form.password,
-            country: this.form.country
+            country: this.form.country,
+            email: this.form.email
           }
         );
         this.$router.push("/login");
@@ -212,8 +300,8 @@ export default {
     onReset() {
       this.form = {
         username: "",
-        firstName: "",
-        lastName: "",
+        firstname: "",
+        lastname: "",
         country: null,
         password: "",
         confirmedPassword: "",
