@@ -4,15 +4,15 @@
     <RecipePreviewList title="Randome Recipes" class="RandomRecipes center" />
     <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
     {{ $root.store.username }}
-    <RecipePreviewList
+    <RecipePreviewListLestSeen
       title="Last Viewed Recipes"
       :class="{
-        // RandomRecipes: True,
+        RandomRecipes: True,
         blur: !$root.store.username,
         center: true
       }"
       disabled
-    ></RecipePreviewList>
+    ></RecipePreviewListLestSeen>
     <!-- <div
       style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
     >
@@ -22,12 +22,22 @@
 </template>
 
 <script>
+
 import RecipePreviewList from "../components/RecipePreviewList";
+import RecipePreviewListLestSeen from "../components/RecipePreviewListLestSeen";
 export default {
   components: {
-    RecipePreviewList
+    RecipePreviewList, RecipePreviewListLestSeen
   }
 };
+
+
+// export {
+//   components: {
+//     RecipePreviewListLestSeen
+//   }
+// };
+
 </script>
 
 <style lang="scss" scoped>

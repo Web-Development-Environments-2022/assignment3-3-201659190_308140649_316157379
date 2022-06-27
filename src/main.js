@@ -2,12 +2,15 @@ import Vue from "vue";
 import App from "./App.vue";
 import VueAxios from "vue-axios";
 import axios from "axios";
+import {state as store} from "./store"
 
 ////// help us to send the cookie to server
 // axios.defualts.withCredentials = true;
 // import VueCookies from 'vue-cookies';
 // Vue.use(VueCookies);
 ////////////////////////////////////////////
+
+Vue.prototype.$store = store;
 
 import routes from "./routes";
 import VueRouter from "vue-router";

@@ -56,7 +56,8 @@ export default {
       try {
         response = await this.axios.get(
           // "https://test-for-3-2.herokuapp.com/recipes/info",
-          this.$root.store.server_domain + "/recipes/info",
+          // this.$root.store.server_domain + "/recipes/info",
+          "http://isa-recipes.cs.bgu.ac.il/recipes/716429/details",
           {
             params: { id: this.$route.params.recipeId }
           }
@@ -78,7 +79,7 @@ export default {
         readyInMinutes,
         image,
         title
-      } = response.data.recipe;
+      } = response.data;
 
       let _instructions = analyzedInstructions
         .map((fstep) => {
