@@ -31,13 +31,6 @@ export default {
   }
 };
 
-
-// export {
-//   components: {
-//     RecipePreviewListLestSeen
-//   }
-// };
-
 </script>
 
 <style lang="scss" scoped>
