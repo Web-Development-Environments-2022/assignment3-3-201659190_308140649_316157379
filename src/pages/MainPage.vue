@@ -7,7 +7,7 @@
     <RecipePreviewList
       title="Last Viewed Recipes"
       :class="{
-        RandomRecipes: true,
+        // RandomRecipes: True,
         blur: !$root.store.username,
         center: true
       }"
