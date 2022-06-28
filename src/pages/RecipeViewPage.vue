@@ -61,7 +61,8 @@ export default {
           // "https://test-for-3-2.herokuapp.com/recipes/info",
           // this.$root.store.server_domain + "/recipes/info",
           // "http://isa-recipes.cs.bgu.ac.il/recipes/638808/details",
-           process.env.server_domain + "recipes/638808/details",
+          //  process.env.server_domain + "recipes/638808/details",
+            "http://localhost:3000/recipes/638808/details",
           {
             params: { id: this.$route.params.recipeId }
           }

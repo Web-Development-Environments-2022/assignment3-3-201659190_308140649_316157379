@@ -28,7 +28,9 @@ export default {
         this.axios.defaults.withCredentials = true;
         const response = await this.axios.get(
             // "http://isa-recipes.cs.bgu.ac.il/favorites",  
-              process.env.server_domain +"/favorites"    );
+              // process.env.server_domain +"/favorites",
+              "http://localhost:3000/recipes/favorites",
+                  );
         this.axios.defaults.withCredentials = false;
         console.log(response);
         const recipes = response.data.recipeList;

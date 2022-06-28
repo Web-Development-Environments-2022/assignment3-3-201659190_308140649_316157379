@@ -98,9 +98,9 @@ export default {
           // "https://test-for-3-2.herokuapp.com/user/Login",
           // this.$root.store.server_domain +"/Login",
           //"http://isa-recipes.cs.bgu.ac.il/Login",
-            process.env.server_domain + "/Login",
-
-
+            // process.env.server_domain + "/Login",
+            "http://localhost:3000/Login",
+            
           {
             username: this.form.username,
             password: this.form.password
