@@ -269,7 +269,8 @@ export default {
         const response = await this.axios.post(
           // "https://test-for-3-2.herokuapp.com/user/Register",
           // this.$root.store.server_domain + "/Register",
-          "http://isa-recipes.cs.bgu.ac.il/Register",
+          // "http://isa-recipes.cs.bgu.ac.il/Register",
+          process.env.server_domain + "/Register",
           // this.$root.store.state.server_domain + "/Register",
 
           {
