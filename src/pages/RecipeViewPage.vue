@@ -45,11 +45,13 @@
 export default {
   data() {
     return {
-      
+      type: Object,
+      require: true,
       recipe: null
     };
   },
-  async created() {
+  mounted : {
+    async created() {
     try {
       let response;
       // response = this.$route.params.response;
@@ -58,7 +60,8 @@ export default {
         response = await this.axios.get(
           // "https://test-for-3-2.herokuapp.com/recipes/info",
           // this.$root.store.server_domain + "/recipes/info",
-          "http://isa-recipes.cs.bgu.ac.il/recipes/716429/details",
+          // "http://isa-recipes.cs.bgu.ac.il/recipes/638808/details",
+           process.env.server_domain + "recipes/638808/details",
           {
             params: { id: this.$route.params.recipeId }
           }
@@ -105,6 +108,8 @@ export default {
       console.log(error);
     }
   }
+  }
+  
 };
 </script>
 

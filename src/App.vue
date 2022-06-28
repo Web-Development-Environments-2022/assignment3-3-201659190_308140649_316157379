@@ -7,7 +7,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item :to="{ name: 'about' }">About</b-nav-item>
-            <b-nav-item :to="{ name: 'Search' }">Searcht</b-nav-item>
+            <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
             <span v-if="$root.store.username">
 
               <b-nav-item-dropdown >
