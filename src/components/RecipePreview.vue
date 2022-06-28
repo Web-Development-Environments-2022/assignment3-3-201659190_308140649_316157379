@@ -10,9 +10,15 @@
       <div :title="recipe.title" class="recipe-title">
         {{ recipe.title }}
       </div>
+      <div :id="recipe.id" class="recipe-id">
+        {{ recipe.id }}
+      </div>
       <ul class="recipe-overview">
         <li>{{ recipe.readyInMinutes }} minutes</li>
         <li>{{ recipe.aggregateLikes }} likes</li>
+        <li>{{ recipe.vegan }} vegan</li>
+        <li>{{ recipe.vegetarian }} vegetarian</li>
+        <li>{{ recipe.glutenFree }} gluten free</li>
       </ul>
     </div>
   </router-link>
