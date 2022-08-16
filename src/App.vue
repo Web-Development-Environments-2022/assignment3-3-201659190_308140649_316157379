@@ -48,7 +48,7 @@
                 <em>Welcome {{ $root.store.username }}</em>
               </template>
               <!-- open model box -->
-              <b-dropdown-item v-b-modal.modal-create-new-recipe>Create Recipe</b-dropdown-item>
+              <b-dropdown-item v-b-modal.modal-1>Create Recipe</b-dropdown-item>
               <b-dropdown-item @click="Logout">Logout</b-dropdown-item>
             </b-nav-item-dropdown>
             </div>
@@ -58,6 +58,12 @@
 
       </b-navbar>
     </div>
+
+    <!-- model - need to complete it-->
+    <b-modal id="modal-1" title="Create new recipe">
+      <p class="my-4">This is very basic modal Example!</p>
+    </b-modal>
+
     <router-view />
   </div>
   

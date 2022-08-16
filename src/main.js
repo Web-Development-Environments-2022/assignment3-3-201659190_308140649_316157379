@@ -4,6 +4,8 @@ import VueAxios from "vue-axios";
 import axios from "axios";
 import {state as store} from "./store"
 
+
+
 ////// help us to send the cookie to server
 // axios.defualts.withCredentials = true;
 import VueCookies from 'vue-cookies';
@@ -22,6 +24,13 @@ const router = new VueRouter({
 import Vuelidate from "vuelidate";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
+
+// we add these 3 lines
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+
+
 import {
   FormGroupPlugin,
   FormPlugin,
