@@ -6,8 +6,8 @@ import {state as store} from "./store"
 
 ////// help us to send the cookie to server
 // axios.defualts.withCredentials = true;
-// import VueCookies from 'vue-cookies';
-// Vue.use(VueCookies);
+import VueCookies from 'vue-cookies';
+Vue.use(VueCookies);
 ////////////////////////////////////////////
 
 Vue.prototype.$store = store;
