@@ -47,8 +47,9 @@
               <template v-slot:button-content>
                 <em>Welcome {{ $root.store.username }}</em>
               </template>
-              <!-- open model box -->
               <b-dropdown-item v-b-modal.modal-create-new-recipe>Create Recipe</b-dropdown-item>
+
+              <!-- open model box -->
               <b-dropdown-item @click="Logout">Logout</b-dropdown-item>
             </b-nav-item-dropdown>
             </div>
@@ -60,7 +61,7 @@
     </div>
     <router-view />
   </div>
-  
+
 </template>
 
 <script>

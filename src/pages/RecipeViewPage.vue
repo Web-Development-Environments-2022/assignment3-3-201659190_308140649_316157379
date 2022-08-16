@@ -50,8 +50,7 @@ export default {
       recipe: null
     };
   },
-  mounted : {
-    async created() {
+  async mounted() {
     try {
       let response;
       // response = this.$route.params.response;
@@ -59,13 +58,16 @@ export default {
       try {
         response = await this.axios.get(
           // "https://test-for-3-2.herokuapp.com/recipes/info",
-          // this.$root.store.server_domain + "/recipes/info",
+          this.$store.server_domain + "/recipes/638808/details",
           // "http://isa-recipes.cs.bgu.ac.il/recipes/638808/details",
           //  process.env.server_domain + "recipes/638808/details",
-            "http://localhost:3000/recipes/638808/details",
-          {
-            params: { id: this.$route.params.recipeId }
-          }
+            // "http://localhost:3000/recipes/638808/details",
+          // {
+          //   params: { id: this.$route.params.recipeId }
+          // },
+          // {
+          //   withCredentials: true
+          // }
         );
 
         // console.log("response.status", response.status);
@@ -108,7 +110,6 @@ export default {
     } catch (error) {
       console.log(error);
     }
-  }
   }
   
 };

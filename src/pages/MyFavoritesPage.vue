@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-  <h1 class="title">My Favorites Page</h1>
   <RecipePreviewList
       title="My Favorite Recipes"
       :recipes="favoriteRecipes"
