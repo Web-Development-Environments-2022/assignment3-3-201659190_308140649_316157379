@@ -48,7 +48,7 @@
                 <em>Welcome {{ $root.store.username }}</em>
               </template>
               <!-- open model box -->
-              <b-dropdown-item v-b-modal.modal-1>Create Recipe</b-dropdown-item>
+              <b-dropdown-item v-b-modal.recipeCreation>Create Recipe</b-dropdown-item>
               <b-dropdown-item @click="Logout">Logout</b-dropdown-item>
             </b-nav-item-dropdown>
             </div>
@@ -58,35 +58,22 @@
 
       </b-navbar>
     </div>
-
-    <!-- model - need to complete it-->
-    <b-modal id="modal-1" title="Create new recipe" @show="resetModal" @hidden="resetModal" @ok="handleNewRecipe">
-      <b-form-group label="Enter recipe title" label-for="recipeTitle">
-        <b-form-input id="recipeTitle" v-model="recipeTitle"></b-form-input>
-      </b-form-group>
-      <b-form-checkbox-group v-model="selected" :options="options" value-field="item" text-field="name">
-      </b-form-checkbox-group>
-      {{selected}}
-    </b-modal>
-
+    <createRecipeModelVue id="recipeCreation"></createRecipeModelVue>
     <router-view />
   </div>
   
 </template>
 
 <script>
+import createRecipeModelVue from './components/createRecipeModel.vue';
 export default {
   name: "App",
+  components: {
+    createRecipeModelVue: createRecipeModelVue
+  },
   data(){
     return{
-      recipeTitle:'',
-      selected:[],
-      options:[
-        {item: 'Vegan', name: 'Vegan'},
-        {item: 'Gluten', name: 'Gluten'}
-      ],
-      image: '',
-      timePreperation: '',
+
     }
   },
   methods: {
@@ -98,15 +85,6 @@ export default {
         this.$forceUpdate();
       });
     },
-    resetModal(){
-      this.recipeTitle = '';
-      this.selected = [];
-      this.image = '';
-      this.timePreperation = '';
-    },
-    handleNewRecipe(){
-      alert('ok');
-    }
   }
 };
 </script>
