@@ -1,7 +1,7 @@
 <template>
     <div>
      <!-- need to complete validation and fix instruction and ingredients to be multiple input that controledby user -->
-    <b-modal id="recipeCreation" title="Create new recipe" @show="resetModal" @hidden="resetModal" @ok="handleNewRecipe">
+    <b-modal id="recipeCreation" title="Create new recipe" @show="resetModal" @hidden="resetModal" hide-footer>
       <b-form-group label="Enter recipe title" label-for="recipeTitle" >
         <b-form-input id="recipeTitle" v-model="recipe.title" :state="recipeTitleState"></b-form-input>
         <b-form-invalid-feedback>
@@ -45,14 +45,19 @@
         </div>
         <b-button type="button" @click="addNewIngredient">Add Ingredient</b-button>
       </b-form-group>
-
       <b-form-checkbox-group v-model="selected" :options="options" value-field="item" text-field="name">
       </b-form-checkbox-group>
+      <b-form-group >
+        <b-button id="btnSubmit" variant="primary">Submit</b-button>
+        <b-button id="btnCancel" variant="secondary" @click="$bvModal.hide('recipeCreation')">Cancel</b-button>
+      </b-form-group>
+
     </b-modal>
     </div>
 </template>
 
 <script>
+import { required } from "vuelidate/lib/validators";
 export default {
   name: "createRecipeModel",
   data(){
@@ -67,16 +72,41 @@ export default {
         image: '',
         timePreperation: '',
         ingredients: [{
-          ingredients:'',
+          ingredient:'',
           amount:'',
         }],
         instructions: [{
           instruction:'test',
         }],
         serving: '',
-    }
       }
-
+    }
+  },
+  validations: {
+    recipe: {
+      title: {
+        required
+      },
+      image: {
+        required
+      },
+      timePreperation: {
+        required
+      },
+      ingredients: {
+        ingredient:{
+          required
+        },
+        amount:{
+          required
+        }
+      },
+      instructions:{
+        instruction:{
+          required
+        }
+      }
+    },
   },
   computed:{
     recipeTitleState(){
@@ -124,8 +154,21 @@ export default {
       }];
       this.recipe.serving= '';
     },
-    handleNewRecipe(){
-      alert('ok');
+    // need to delete the session check in the end
+    async handleSubmit(){
+      const session = this.$cookies.get("session");
+      if(session){
+            const response = await this.axios.get(this.$store.server_domain + "/users/my_recipe",
+            {
+              recipe: this.recipe,
+            },
+            {
+              withCredentials: true,
+            }
+      )}
+      else{
+        alert("no cookies, need to re-login");
+      }
     },
     addNewInstruction(){
       this.recipe.instructions.push({
@@ -142,3 +185,13 @@ export default {
   }
 };
 </script>
+<style>
+  #btnSubmit{
+    margin-left: 15vh;
+
+
+  }
+  #btnCancel{
+   margin-left: 5vh;
+  }
+</style>
