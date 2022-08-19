@@ -37,8 +37,10 @@ export default {
     async updateRecipes() {
       try {
         const response = await this.axios.get(
-        //   "http://isa-recipes.cs.bgu.ac.il/users/recipes"
-        // "http://localhost:3000/users/recipe"
+          this.$store.server_domain + "/users/recipes",
+          {
+            withCredentials: true
+          }
         );
 
         // console.log(response);

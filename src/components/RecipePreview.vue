@@ -17,9 +17,9 @@
       <ul class="recipe-overview">
         <li>{{ recipe.readyInMinutes }} minutes</li>
         <li>{{ recipe.aggregateLikes }} likes</li>
-        <li>{{ recipe.vegan }} vegan</li>
-        <li>{{ recipe.vegetarian }} vegetarian</li>
-        <li>{{ recipe.glutenFree }} gluten free</li>
+        <li v-if="recipe.vegan">vegan</li>
+        <li v-if="recipe.vegetarian">vegetarian</li>
+        <li v-if="recipe.glutenFree">gluten free</li>
       </ul>
     </div>
   </router-link>
@@ -43,29 +43,29 @@ export default {
       required: true
     },
 
-    id: {
-      type: Number,
-      required: true
-    },
-    title: {
-      type: String,
-      required: true
-    },
-    readyInMinutes: {
-      type: Number,
-      required: true
-    },
-    image: {
-      type: String,
-      required: true
-    },
-    aggregateLikes: {
-      type: Number,
-      required: false,
-      default() {
-        return undefined;
-      }
-    }
+    // id: {
+    //   type: Number,
+    //   required: true
+    // },
+    // title: {
+    //   type: String,
+    //   required: true
+    // },
+    // readyInMinutes: {
+    //   type: Number,
+    //   required: true
+    // },
+    // image: {
+    //   type: String,
+    //   required: true
+    // },
+    // aggregateLikes: {
+    //   type: Number,
+    //   required: false,
+    //   default() {
+    //     return undefined;
+    //   }
+    // }
   }
 };
 </script>
@@ -132,6 +132,8 @@ export default {
   table-layout: fixed;
   margin-bottom: 0px;
 } */
+
+
 
 /* .recipe-preview .recipe-footer ul.recipe-overview li {
   -webkit-box-flex: 1;

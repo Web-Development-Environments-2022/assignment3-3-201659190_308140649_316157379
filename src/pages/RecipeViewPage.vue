@@ -1,6 +1,6 @@
 <template>
  <div>
-      <Recipe :recipe="recipeData" />
+      <Recipe class="center" :recipe="recipeData" />
 
 
 

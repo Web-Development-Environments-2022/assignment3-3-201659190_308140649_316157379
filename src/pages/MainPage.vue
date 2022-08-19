@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <h1 class="title">Main Page</h1>
-    <RecipePreviewList title="Randome Recipes" class="RandomRecipes center" />
+    <b-button variant="primary" @click="changeRandomRecipe">Change recipe</b-button>
+    <RecipePreviewList title="Randome Recipes" class="RandomRecipes center" ></RecipePreviewList>  
     <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
-    {{ $root.store.username }}
     <RecipePreviewListLestSeen
       title="Last Viewed Recipes"
       :class="{
@@ -28,6 +28,12 @@ import RecipePreviewListLestSeen from "../components/RecipePreviewListLestSeen";
 export default {
   components: {
     RecipePreviewList, RecipePreviewListLestSeen
+  },
+  methods:{
+    //need to complete this function
+    changeRandomRecipe(){
+      alert('need to complete this function')
+    }
   }
 };
 
@@ -39,7 +45,7 @@ export default {
 }
 .blur {
   -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
-  filter: blur(2px);
+  filter: blur(5px);
 }
 ::v-deep .blur .recipe-preview {
   pointer-events: none;
