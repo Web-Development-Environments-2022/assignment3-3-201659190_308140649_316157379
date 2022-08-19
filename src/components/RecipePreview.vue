@@ -34,7 +34,7 @@ export default {
   // },
   data() {
     return {
-      image_load: true
+      // image_load: false
     };
   },
   props: {
@@ -78,13 +78,13 @@ export default {
   position: relative;
   margin: 10px 10px;
 }
-.recipe-preview > .recipe-body {
+/* .recipe-preview > .recipe-body {
   width: 100%;
   height: 200px;
   position: relative;
-}
+} */
 
-.recipe-preview .recipe-body .recipe-image {
+/* .recipe-preview .recipe-body .recipe-image {
   margin-left: auto;
   margin-right: auto;
   margin-top: auto;
@@ -95,7 +95,7 @@ export default {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
-}
+} */
 
 .recipe-preview .recipe-footer {
   width: 100%;
@@ -113,7 +113,7 @@ export default {
   -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
-
+/* 
 .recipe-preview .recipe-footer ul.recipe-overview {
   padding: 5px 10px;
   width: 100%;
@@ -131,9 +131,9 @@ export default {
   flex: 1 auto;
   table-layout: fixed;
   margin-bottom: 0px;
-}
+} */
 
-.recipe-preview .recipe-footer ul.recipe-overview li {
+/* .recipe-preview .recipe-footer ul.recipe-overview li {
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -144,5 +144,5 @@ export default {
   width: 90px;
   display: table-cell;
   text-align: center;
-}
+}  */
 </style>
