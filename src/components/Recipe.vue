@@ -12,6 +12,7 @@
     <div class="div">
         <strong>Instructions:</strong>
         <ol>
+        
           <!-- <li v-for="s in recipe.instructions" :key="s.number">{{ s.step }}</li> -->
         </ol>
     </div>
