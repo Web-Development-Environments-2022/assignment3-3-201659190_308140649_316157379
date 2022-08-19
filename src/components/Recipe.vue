@@ -4,6 +4,31 @@
     <RecipePreview :recipe="recipe.recipePreview"></RecipePreview>
     {{RecipePreview}}
 
+    <div class="div">
+        <strong> Servings:</strong>
+        <li v-on="recipe.servings"> {{recipe.servings}}</li>
+        
+    </div>
+    <div class="div">
+        <strong>Instructions:</strong>
+        <ol>
+          <!-- <li v-for="s in recipe.instructions" :key="s.number">{{ s.step }}</li> -->
+        </ol>
+    </div>
+
+    <div class="div"><strong>Ingredients: </strong>
+
+        <ul>
+        <li v-for="(value, key,index) in recipe.ingredients"  :key="index">
+         {{ key }}: {{ value }}
+         </li>
+        </ul>
+        
+
+    </div>
+
+
+
 </div>
 
 </template>
