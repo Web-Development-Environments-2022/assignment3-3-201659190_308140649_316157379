@@ -4,11 +4,9 @@
       {{ title }}:
       <slot></slot>
     </h3>
-    <b-row>
-      <b-col v-for="r in recipes" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r" />
-      </b-col>
-    </b-row>
+    <div v-for="r in recipes" :key="r.id">
+      <RecipePreview class="recipePreview" :recipe="r" />
+    </div>
   </b-container>
 </template>
 
@@ -42,12 +40,9 @@ export default {
             withCredentials: true
           }
         );
-
-        // console.log(response);
         const recipes = response.data;
         this.recipes = [];
         this.recipes.push(...recipes);
-        // console.log(this.recipes);
       } catch (error) {
         console.log(error);
       }

@@ -31,8 +31,8 @@ export default {
           }
         );
         const recipesFromServer = response.data;
-        this.recipes = [];
         this.recipes.push(...recipesFromServer);
+        
         // console.log(this.recipes);
       } catch (error) {
         console.log(error);

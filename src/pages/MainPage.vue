@@ -3,19 +3,18 @@
     <h1 class="title">Main Page</h1>
     <b-row>
       <b-col>
-        <RecipePreviewList title="Randome Recipes" class="RandomRecipes center" ></RecipePreviewList> 
-        <b-button id="btnRandomRecipes" variant="primary" @click="changeRandomRecipe">Change recipe</b-button> 
+        <RecipePreviewList title="Explore this recipes" class="RandomRecipes center" ></RecipePreviewList> 
       </b-col>
       <b-col>
         <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
         <RecipePreviewListLestSeen
-          title="Last Viewed Recipes"
+          title="Last watched Recipes"
           :class="{
             RandomRecipes: True,
             blur: !$root.store.username,
             center: true
           }"
-          id="laseSeenRecipt"
+          id="lastSeenRecipt"
           disabled
         ></RecipePreviewListLestSeen >
       </b-col>
@@ -35,14 +34,9 @@ import RecipePreviewList from "../components/RecipePreviewList";
 import RecipePreviewListLestSeen from "../components/RecipePreviewListLestSeen";
 export default {
   components: {
-    RecipePreviewList, RecipePreviewListLestSeen
+    RecipePreviewList, 
+    RecipePreviewListLestSeen
   },
-  methods:{
-    //need to complete this function
-    changeRandomRecipe(){
-      alert('need to complete this function')
-    }
-  }
 };
 
 </script>
@@ -52,12 +46,7 @@ export default {
   margin-top: 5vh;
 }
 
-#btnRandomRecipes{
-  margin-top: 2vh;
-  margin-bottom: 5vh;
-}
-
-#laseSeenRecipt{
+#lastSeenRecipt{
   margin-top: 5vh;
   width: 80%;
 }

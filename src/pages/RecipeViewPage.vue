@@ -1,9 +1,6 @@
 <template>
  <div>
       <Recipe class="center" :recipe="recipeData" />
-
-
-
  </div>
 </template>
 
@@ -28,20 +25,11 @@ export default {
 
       try {
         response = await this.axios.get(
-          // "https://test-for-3-2.herokuapp.com/recipes/info",
-          this.$store.server_domain + "/recipes/638808/details",
-          // "http://isa-recipes.cs.bgu.ac.il/recipes/638808/details",
-          //  process.env.server_domain + "recipes/638808/details",
-            // "http://localhost:3000/recipes/638808/details",
-          // {
-          //   params: { id: this.$route.params.recipeId }
-          // },
+          this.$store.server_domain + "/recipes/" + this.$route.params.recipeId + "/details",
           {
             withCredentials: true
           }
         );
-
-        // console.log("response.status", response.status);
         if (response.status !== 200) this.$router.replace("/NotFound");
       } catch (error) {
         console.log("error.response.status", error.response.status);
