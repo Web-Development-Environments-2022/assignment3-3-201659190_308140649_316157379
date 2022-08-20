@@ -4,9 +4,6 @@
     <div v-for="(r, index) in recipes" :key="index">
       <RecipePreviewVue :recipe="r"></RecipePreviewVue>
     </div>
-
-    
-  
   </div>
 </template>
 
@@ -15,6 +12,11 @@ import RecipePreviewVue from '../components/RecipePreview.vue';
 export default {
   components:{
     RecipePreviewVue: RecipePreviewVue,
+  },
+  data(){
+    return{
+      recipes: [],
+    }
   },
   mounted() {
     this.updateRecipes();
@@ -28,11 +30,9 @@ export default {
             withCredentials: true,
           }
         );
-
-        // console.log(response);
-        const recipes = response.data;
+        const recipesFromServer = response.data;
         this.recipes = [];
-        this.recipes.push(...recipes);
+        this.recipes.push(...recipesFromServer);
         // console.log(this.recipes);
       } catch (error) {
         console.log(error);

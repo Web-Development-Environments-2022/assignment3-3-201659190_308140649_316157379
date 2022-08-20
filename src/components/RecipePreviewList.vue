@@ -4,11 +4,9 @@
       {{ title }}:
       <slot></slot>
     </h3>
-    <b-row>
-      <b-col v-for="r in recipes" :key="r.id">
-        <RecipePreview class="recipePreview" :recipe="r" />
-      </b-col>
-    </b-row>
+    <div v-for="r in recipes" :key="r.id">
+      <RecipePreview class="recipePreview" :recipe="r" />
+    </div>
   </b-container>
 </template>
 
@@ -68,11 +66,7 @@ export default {
 //     async updateRecipes() {
 //       try {
 //         const response = await this.axios.get(
-//           // "http://isa-recipes.cs.bgu.ac.il/recipes/random",
-//           // process.env.server_domain + "/recipes/random",
-//           "http://localhost:3000/recipes/random"
-//           // this.$root.store.server_domain + "/recipes/random",
-//           // "https://test-for-3-2.herokuapp.com/recipes/random"
+//           // this.$store.server_domain + "/recipes/random",
 //         );
 
 //         // console.log(response);
@@ -91,5 +85,6 @@ export default {
 <style lang="scss" scoped>
 .container {
   min-height: 400px;
+
 }
 </style>
