@@ -1,20 +1,24 @@
 <template>
-  <div class="container">
-  <RecipePreviewList
-      title="My Favorite Recipes"
-      :recipes="favoriteRecipes"
-      class="favorite-recipes"
-    />
+  <div>
+    <h1 id="pageTitle">My Favorite Recipes</h1>
+    <div class="container" v-for="(recipe, i) in favoriteRecipes" :key="i">
+      <RecipePreviewVue :recipe="recipe"></RecipePreviewVue>
+      <CheckFavAndSeenVue :recipe_id="recipe.id"></CheckFavAndSeenVue>
+    </div>
   </div>
 </template>
 
 <script>
-import RecipePreviewList from "../components/RecipePreviewList";
-
+import RecipePreviewVue from '../components/RecipePreview.vue';
+import CheckFavAndSeenVue from '../components/CheckFavAndSeen.vue';
 export default {
   name: "MyFavoritesPage",
   components: {
-    RecipePreviewList: RecipePreviewList
+    RecipePreviewVue: RecipePreviewVue,
+    CheckFavAndSeenVue: CheckFavAndSeenVue,
+  },
+    mounted() {
+    this.getMyFavoriteRecipes();
   },
   data() {
     return {
@@ -24,31 +28,30 @@ export default {
   methods: {
     async getMyFavoriteRecipes() {
       try {
-        this.axios.defaults.withCredentials = true;
         const response = await this.axios.get(
-            // "http://isa-recipes.cs.bgu.ac.il/favorites",  
-              // process.env.server_domain +"/favorites",
-              "http://localhost:3000/recipes/favorites",
-                  );
-        this.axios.defaults.withCredentials = false;
-        console.log(response);
-        const recipes = response.data.recipeList;
-        this.favoriteRecipes = [];
+          this.$store.server_domain + "/users/favorites",
+          {
+            withCredentials: true,
+          }
+        );
+        const recipes = response.data;
         this.favoriteRecipes.push(...recipes);
       } catch (err) {
         console.log(err.response);
       }
     }
   },
-  mounted() {
-    this.getMyFavoriteRecipes();
-  }
 };
 </script>
 
 <style lang="scss" scoped>
 .container {
   max-width: 550px;
+}
+
+#pageTitle{
+  text-align: center;
+  margin-bottom: 5vh;
 }
 </style>
 

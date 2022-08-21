@@ -3,40 +3,33 @@
     :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
     class="recipe-preview"
   >
+    <h1>{{ recipe.title }}</h1>
     <div class="recipe-body" @mouseover="hover=true" @mouseleave="hover=false">
-      <!-- <img v-if="image_load" :src="recipe.image" class="recipe-image" /> -->
       <img :src="recipe.image" class="recipe-image" />
       <span v-if="hover">click on image</span>
     </div>
-    <div class="recipe-footer">
-      <div :title="recipe.title" class="recipe-title">
-        {{ recipe.title }}
+      <div class="recipe-footer">
+        <div :id="recipe.id" class="recipe-id">
+          {{ recipe.id }}
+        </div>
+        <ul class="recipe-overview">
+          <li>{{ recipe.readyInMinutes }} minutes</li>
+          <li>{{ recipe.aggregateLikes }} likes</li>
+          <li v-if="recipe.vegan">vegan</li>
+          <li v-if="recipe.vegetarian">vegetarian</li>
+          <li v-if="recipe.glutenFree">gluten free</li>
+        </ul>
       </div>
-      <div :id="recipe.id" class="recipe-id">
-        {{ recipe.id }}
-      </div>
-      <ul class="recipe-overview">
-        <li>{{ recipe.readyInMinutes }} minutes</li>
-        <li>{{ recipe.aggregateLikes }} likes</li>
-        <li v-if="recipe.vegan">vegan</li>
-        <li v-if="recipe.vegetarian">vegetarian</li>
-        <li v-if="recipe.glutenFree">gluten free</li>
-      </ul>
-    </div>
   </router-link>
 </template>
 
 <script>
+
 export default {
-  // mounted() {
-  //   this.axios.get(this.recipe.image).then((i) => {
-  //     this.image_load = true;
-  //   });
-  // },
+
   data() {
     return {
       hover: false,
-      // image_load: false
     };
   },
   props: {
@@ -44,7 +37,7 @@ export default {
       type: Object,
       required: true
     },
-  }
+  },
 };
 </script>
 
@@ -74,6 +67,19 @@ export default {
   -moz-background-size: cover;
   background-size: cover;
 } */
+
+
+.recipe-image {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px;
+  width: 150px;
+}
+
+.recipe-image:hover {
+  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+}
+
 
 .recipe-preview .recipe-footer {
   width: 100%;
