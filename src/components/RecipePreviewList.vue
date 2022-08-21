@@ -62,7 +62,6 @@ export default {
     }  
       ]
     };
-<<<<<<< HEAD
   }
 //   mounted() {
 //     this.updateRecipes();
@@ -88,33 +87,6 @@ export default {
 //       }
 //     },
 //   }
-=======
-  },
-  // mounted() {
-  //   this.updateRecipes();
-  // },
-  // data(){
-  //   return{
-  //     recipes: [],
-  //   }
-  // },
-  // methods: {
-  //   async updateRecipes() {
-  //     try {
-  //       const response = await this.axios.get(
-  //         this.$store.server_domain + "/recipes/random",
-  //       );
-
-  //       const recipes = response.data;
-  //       this.recipes = [];
-  //       this.recipes.push(...recipes);
-  //       // console.log(this.recipes);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   },
-  // }
->>>>>>> d78f488140ec1c7d64d5dafd01ad2dca971be4ea
 };
 </script>
 

@@ -2,37 +2,13 @@
   
   <router-link
     :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
-<<<<<<< HEAD
     class="recipe-preview">
     <div :title="recipe.title" class="recipe-title">
        <h1> {{ recipe.title }}</h1>
     <div class="recipe-body">
       <!-- <img v-if="image_load" :src="recipe.image" class="recipe-image" /> -->
-=======
-    class="recipe-preview"
-  >
-    <h1>{{ recipe.title }}</h1>
-    <div class="recipe-body" @mouseover="hover=true" @mouseleave="hover=false">
->>>>>>> d78f488140ec1c7d64d5dafd01ad2dca971be4ea
       <img :src="recipe.image" class="recipe-image" />
     </div>
-<<<<<<< HEAD
-    <!-- <div class="recipe-footer">
-      <div :title="recipe.title" class="recipe-title">
-        {{ recipe.title }}
-      </div> -->
-      <div :id="recipe.id" class="recipe-id">
-        {{ recipe.id }}
-      </div>
-      <ul class="recipe-overview">
-        <li>{{ recipe.readyInMinutes }} minutes</li>
-        <li>{{ recipe.aggregateLikes }} likes</li>
-        <li v-if="recipe.vegan">vegan</li>
-        <li v-if="recipe.vegetarian">vegetarian</li>
-        <li v-if="recipe.glutenFree">gluten free</li>
-      </ul>
-    </div>
-=======
       <div class="recipe-footer">
         <div :id="recipe.id" class="recipe-id">
           {{ recipe.id }}
@@ -45,7 +21,8 @@
           <li v-if="recipe.glutenFree">gluten free</li>
         </ul>
       </div>
->>>>>>> d78f488140ec1c7d64d5dafd01ad2dca971be4ea
+    </div>
+
   </router-link>
 </template>
 
@@ -55,11 +32,7 @@ export default {
 
   data() {
     return {
-<<<<<<< HEAD
-      // image_load: false
-=======
       hover: false,
->>>>>>> d78f488140ec1c7d64d5dafd01ad2dca971be4ea
     };
   },
   props: {
@@ -67,35 +40,7 @@ export default {
       type: Object,
       required: true
     },
-<<<<<<< HEAD
-
-    // id: {
-    //   type: Number,
-    //   required: true
-    // },
-    // title: {
-    //   type: String,
-    //   required: true
-    // },
-    // readyInMinutes: {
-    //   type: Number,
-    //   required: true
-    // },
-    // image: {
-    //   type: String,
-    //   required: true
-    // },
-    // aggregateLikes: {
-    //   type: Number,
-    //   required: false,
-    //   default() {
-    //     return undefined;
-    //   }
-    // }
-  }
-=======
   },
->>>>>>> d78f488140ec1c7d64d5dafd01ad2dca971be4ea
 };
 </script>
 
