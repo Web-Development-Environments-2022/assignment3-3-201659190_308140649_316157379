@@ -5,7 +5,7 @@
       <b-col>
         <RecipePreviewList title="Explore this recipes" class="RandomRecipes center" ></RecipePreviewList> 
       </b-col>
-      <b-col>
+      <!-- <b-col>
         <router-link v-if="!$root.store.username" to="/login" tag="button">You need to Login to vue this</router-link>
         <RecipePreviewListLestSeen
           title="Last watched Recipes"
@@ -17,14 +17,9 @@
           id="lastSeenRecipt"
           disabled
         ></RecipePreviewListLestSeen >
-      </b-col>
+      </b-col> -->
     </b-row>
     
-    <!-- <div
-      style="position: absolute;top: 70%;left: 50%;transform: translate(-50%, -50%);"
-    >
-      Centeredasdasdad
-    </div>-->
   </div>
 </template>
 

@@ -6,16 +6,19 @@
     </h3>
     <div v-for="r in recipes" :key="r.id">
       <RecipePreview class="recipePreview" :recipe="r" />
+      <CheckFavAndSeenVue :recipe_id="r.id"></CheckFavAndSeenVue>
     </div>
   </b-container>
 </template>
 
 <script>
 import RecipePreview from "./RecipePreview.vue";
+import CheckFavAndSeenVue from "./CheckFavAndSeen.vue";
 export default {
   name: "RecipePreviewList",
   components: {
-    RecipePreview
+    RecipePreview,
+    CheckFavAndSeenVue,
   },
   props: {
     title: {

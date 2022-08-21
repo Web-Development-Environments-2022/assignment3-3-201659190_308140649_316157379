@@ -1,14 +1,17 @@
 <template>
  <div>
       <Recipe class="center" :recipe="recipeData" />
+      <CheckFavAndSeenVue class="center" :recipe_id="recipeData.recipePreview.id"></CheckFavAndSeenVue>
  </div>
 </template>
 
 <script>
 import Recipe from "../components/Recipe";
+import CheckFavAndSeenVue from "../components/CheckFavAndSeen.vue";
 export default {
   components: {
-    Recipe: Recipe
+    Recipe: Recipe,
+    CheckFavAndSeenVue: CheckFavAndSeenVue,
   },
   data() {
     return {
@@ -21,8 +24,6 @@ export default {
   async mounted() {
     try {
       let response;
-      // response = this.$route.params.response;
-
       try {
         response = await this.axios.get(
           this.$store.server_domain + "/recipes/" + this.$route.params.recipeId + "/details",
@@ -42,35 +43,7 @@ export default {
         ingredients,
         recipePreview,
       } = response.data;
-      // alert(response.data)
       this.recipeData = response.data;
-      // alert(response.data.instructions);
-
-
-
-
-      // let _instructions = analyzedInstructions
-      //   .map((fstep) => {
-      //     fstep.steps[0].step = fstep.name + fstep.steps[0].step;
-      //     return fstep.steps;
-      //   })
-      //   .reduce((a, b) => [...a, ...b], []);
-
-      // let _recipe = {
-      //   id,
-      //   instructions,
-      //   _instructions,
-      //   // analyzedInstructions,
-      //   extendedIngredients,
-      //   aggregateLikes,
-      //   readyInMinutes,
-      //   image,
-      //   title,
-      //   vegan,
-      //   glutenFree,
-      // };
-
-      // this.recipe = _recipe;
     } catch (error) {
       console.log(error);
     }

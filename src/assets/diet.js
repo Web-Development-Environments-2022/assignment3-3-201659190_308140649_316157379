@@ -1,4 +1,6 @@
-export default ["Gluten Free",  
+export default [
+"",
+"Gluten Free",  
 "Ketogenic",  
 "Vegetarian",  
 "Lacto-Vegetarian",  

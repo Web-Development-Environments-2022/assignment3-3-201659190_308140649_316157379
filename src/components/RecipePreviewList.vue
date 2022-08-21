@@ -5,7 +5,8 @@
       <slot></slot>
     </h3>
     <div v-for="r in recipes" :key="r.id">
-      <RecipePreview class="recipePreview" :recipe="r" />
+      <RecipePreview  :recipe="r"></RecipePreview>
+      <CheckFavAndSeen :recipe_id="r.id"></CheckFavAndSeen>
     </div>
     <b-button id="btnRandomRecipes" variant="primary" @click="updateRecipes">Change recipe</b-button> 
   </b-container>
@@ -13,10 +14,12 @@
 
 <script>
 import RecipePreview from "./RecipePreview.vue";
+import CheckFavAndSeen from "./CheckFavAndSeen.vue";
 export default {
   name: "RecipePreviewList",
   components: {
-    RecipePreview
+    RecipePreview: RecipePreview,
+    CheckFavAndSeen: CheckFavAndSeen,
   },
   props: {
     title: {
@@ -59,6 +62,7 @@ export default {
     }  
       ]
     };
+<<<<<<< HEAD
   }
 //   mounted() {
 //     this.updateRecipes();
@@ -84,6 +88,33 @@ export default {
 //       }
 //     },
 //   }
+=======
+  },
+  // mounted() {
+  //   this.updateRecipes();
+  // },
+  // data(){
+  //   return{
+  //     recipes: [],
+  //   }
+  // },
+  // methods: {
+  //   async updateRecipes() {
+  //     try {
+  //       const response = await this.axios.get(
+  //         this.$store.server_domain + "/recipes/random",
+  //       );
+
+  //       const recipes = response.data;
+  //       this.recipes = [];
+  //       this.recipes.push(...recipes);
+  //       // console.log(this.recipes);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   },
+  // }
+>>>>>>> d78f488140ec1c7d64d5dafd01ad2dca971be4ea
 };
 </script>
 

@@ -60,7 +60,7 @@
       <br>
       <b-form-group >
         <b-button id="btnSubmit" variant="primary" @click="handleSubmit">Submit</b-button>
-        <b-button id="btnCancel" variant="secondary" @click="$bvModal.hide('recipeCreation')">Cancel</b-button>
+        <b-button id="btnCancel" variant="danger" @click="$bvModal.hide('recipeCreation')">Cancel</b-button>
       </b-form-group>
     </b-modal>
     </div>
@@ -193,7 +193,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
   #btnSubmit{
     margin-left: 15vh;
 
