@@ -31,11 +31,11 @@
 <script>
 
 import RecipePreviewList from "../components/RecipePreviewList";
-import RecipePreviewListLestSeen from "../components/RecipePreviewListLestSeen";
+// import RecipePreviewListLestSeen from "../components/RecipePreviewListLestSeen";
 export default {
   components: {
     RecipePreviewList, 
-    RecipePreviewListLestSeen
+    // RecipePreviewListLestSeen
   },
 };
 

@@ -28,7 +28,7 @@
 
         <strong>Instructions: </strong>
         <li v-for="(value, key,index) in recipe.instructions"  :key="index">
-         {{ key + 1 }}: {{ value }}
+         {{ value }}
         </li>
 
         <!-- <li>{{ recipe.aggregateLikes }} likes</li>
@@ -80,4 +80,12 @@ export default {
 .container {
   max-width: 520px;
 }
+.recipe-image{
+  display: inline-block;
+  width: 90%;
+  height: 100%;
+  position: relative;
+  margin: 10px 10px;
+}
+
 </style>

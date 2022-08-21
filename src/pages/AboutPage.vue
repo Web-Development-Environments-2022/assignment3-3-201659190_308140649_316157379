@@ -43,8 +43,8 @@
             </b>
             
             <ul>
-              <li>ID: </li>
-              <li>Email: @post.bgu.ac.il</li>
+              <li>ID: 201659190 </li>
+              <li>Email:hshah@post.bgu.ac.il</li>
             </ul>
           </th>
         </tr>
@@ -60,8 +60,8 @@
             </b>
             
             <ul>
-              <li>ID: </li>
-              <li>Email: @post.bgu.ac.il</li>
+              <li>ID: 316157379</li>
+              <li>Email:avichaie@post.bgu.ac.il</li>
             </ul>
           </th>
         </tr>
@@ -78,7 +78,7 @@
             
             <ul>
               <li>ID: 308140649</li>
-              <li>Email: @post.bgu.ac.il</li>
+              <li>Email: inbarza@post.bgu.ac.il</li>
             </ul>
           </th>
         </tr>

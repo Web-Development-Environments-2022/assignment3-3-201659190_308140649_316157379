@@ -1,17 +1,18 @@
 <template>
+  
   <router-link
     :to="{ name: 'recipe', params: { recipeId: recipe.id } }"
-    class="recipe-preview"
-  >
-    <div class="recipe-body" @mouseover="hover=true" @mouseleave="hover=false">
+    class="recipe-preview">
+    <div :title="recipe.title" class="recipe-title">
+       <h1> {{ recipe.title }}</h1>
+    <div class="recipe-body">
       <!-- <img v-if="image_load" :src="recipe.image" class="recipe-image" /> -->
       <img :src="recipe.image" class="recipe-image" />
-      <span v-if="hover">click on image</span>
     </div>
-    <div class="recipe-footer">
+    <!-- <div class="recipe-footer">
       <div :title="recipe.title" class="recipe-title">
         {{ recipe.title }}
-      </div>
+      </div> -->
       <div :id="recipe.id" class="recipe-id">
         {{ recipe.id }}
       </div>
@@ -35,7 +36,6 @@ export default {
   // },
   data() {
     return {
-      hover: false,
       // image_load: false
     };
   },
@@ -44,6 +44,30 @@ export default {
       type: Object,
       required: true
     },
+
+    // id: {
+    //   type: Number,
+    //   required: true
+    // },
+    // title: {
+    //   type: String,
+    //   required: true
+    // },
+    // readyInMinutes: {
+    //   type: Number,
+    //   required: true
+    // },
+    // image: {
+    //   type: String,
+    //   required: true
+    // },
+    // aggregateLikes: {
+    //   type: Number,
+    //   required: false,
+    //   default() {
+    //     return undefined;
+    //   }
+    // }
   }
 };
 </script>
