@@ -39,51 +39,30 @@
           <!-- Cuisine -->
           <th>
             <b-form-group id="input-group-cuisine" label="Cuisine:" label-for="cuisine"></b-form-group>
-            <b-form-select
-              id="cuisine"
-              v-model="$v.form.cuisine.$model"
-              :options="optCuisines"
-              class="mb-3"
-              :state="validateState('cuisine')"
-            >
-              <template v-slot:first>
-                <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
-              </template>
-            </b-form-select>
+              <b-dropdown text="Choose Cuisines" >
+                <b-form-checkbox-group v-model="selectedCuisines" :options="optCuisines" stacked>
+                </b-form-checkbox-group>
+              </b-dropdown>
             <b-form-invalid-feedback v-if="!$v.form.cuisine.required">Result Number is required</b-form-invalid-feedback>
           </th>
 
           <!-- Diet -->
           <th>
             <b-form-group id="input-group-diet" label="Diet:" label-for="diet"></b-form-group>
-            <b-form-select
-              id="diet"
-              v-model="$v.form.diet.$model"
-              :options="optDiets"
-              class="mb-3"
-              :state="validateState('diet')"
-            >
-              <template v-slot:first>
-                <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
-              </template>
-            </b-form-select>
+            <b-dropdown text="Choose Diet" >
+              <b-form-checkbox-group v-model="selectedDiets" :options="optDiets" stacked>
+              </b-form-checkbox-group>
+            </b-dropdown>
             <b-form-invalid-feedback v-if="!$v.form.diet.required">Result Number is required</b-form-invalid-feedback>
           </th>
 
           <!-- Intolarence -->
           <th>
             <b-form-group id="input-group-intolarence" label="Intolarence:" label-for="intolarence"></b-form-group>
-            <b-form-select
-              id="intolarence"
-              v-model="$v.form.intolarence.$model"
-              :options="optIntolarences"
-              class="mb-3"
-              :state="validateState('intolarence')"
-            >
-              <template v-slot:first>
-                <b-form-select-option :value="null" disabled>-- Please select an option --</b-form-select-option>
-              </template>
-            </b-form-select>
+            <b-dropdown text="Choose Intolarences" >
+              <b-form-checkbox-group v-model="selectedIntolarences" :options="optIntolarences" stacked>
+              </b-form-checkbox-group>
+            </b-dropdown>
             <b-form-invalid-feedback v-if="!$v.form.diet.required">Intolarence is required</b-form-invalid-feedback>
           </th>
 
@@ -122,6 +101,7 @@
       <ul>
         <ol v-for="result in results" v-bind:key="result.id" class="result">
           <RecipePreview class="recipePreview" :recipe="result" />
+          <CheckFavAndSeenVue :recipe_id="result.id"></CheckFavAndSeenVue>
         </ol>
       </ul>
     </div>
@@ -134,6 +114,7 @@ import Cuisines from "../assets/cuisine";
 import Diets from "../assets/diet";
 import Intolerances from "../assets/intolerance";
 import RecipePreview from "../components/RecipePreview";
+import CheckFavAndSeenVue from "../components/CheckFavAndSeen.vue";
 
 import {
   required,
@@ -144,11 +125,17 @@ import {
 
 export default {
   components: {
-    RecipePreview
+    RecipePreview,
+    CheckFavAndSeenVue,
   },
   name: "Search",
   data() {
     return {
+      selectedIntolarences: [],
+      selectedDiets: [],
+      selectedCountry: [],
+      selectedCuisines: [],
+      resultNumbers:[5, 10, 15],
       form: {
         query: "",
         number: "5",
@@ -158,11 +145,11 @@ export default {
       },
       validated: false,
       results: [],
-      countries: [{ value: null, text: "", disabled: true }],
-      optCuisines: [{ value: null, text: "", disabled: true }],
-      optDiets: [{ value: null, text: "", disabled: true }],
-      optIntolarences: [{ value: null, text: "", disabled: true }],
-      optResultsNo: [{ value: null, text: "", disabled: true }],
+      optCuisines: [],
+      optIntolarences: [],
+      countries: [],
+      optDiets: [],
+      optResultsNo: [],
       errors: [],
       sortParam: "Popularity",
       orderParam: "Ascending",
@@ -194,10 +181,7 @@ export default {
     this.optCuisines.push(...Cuisines);
     this.optDiets.push(...Diets);
     this.optIntolarences.push(...Intolerances);
-    this.optResultsNo.push(...ResultNumbers);
-    console.log("this.submit: ",this.submitted);
-    console.log("sessionStorage is : ", sessionStorage.getItem("lastQuery"));
-    console.log("sessionStorage is : ", sessionStorage.getItem("lastResults"));
+    this.optResultsNo.push(...this.resultNumbers);
     if (sessionStorage.getItem("lastQuery") != null) {
       console.log("got inside the load previous search");
       this.form.query = sessionStorage.getItem("lastQuery");
@@ -216,23 +200,28 @@ export default {
         let params = {};
         params.query = this.form.query;
         params.number = this.form.number
-        if (this.form.cuisine != "") {
-          params.cuisine = this.form.cuisine;
+        if (this.selectedCuisines.length > 0) {
+          params.cuisine = this.selectedCuisines.toString();
         }
-        if (this.form.diet != "") {
-          params.diet = this.form.diet;
+        if (this.selectedDiets.length > 0) {
+          params.diet = this.selectedDiets.toString();
         }
-        if (this.form.intolarence != "") {
-          params.intolarence = this.form.intolarence;
+        if (this.selectedIntolarences.length > 0) {
+          params.intolarence = this.selectedIntolarences.toString();
         }
         response = await this.axios.get(
-          "http://localhost:3000/recipes/search/",
+          this.$store.server_domain + "/recipes/search/",
           {
             params: params
+          },
+          {
+            withCredentials: true
           }
         );
 
-        if (response.status !== 200) this.$router.replace("/NotFound");
+        if (response.status !== 200){
+          this.$router.replace("/NotFound");
+        } 
         else this.results.push(...response.data);
         console.log("save to lastQuery this value: ", this.form.query);
         sessionStorage.setItem("lastQuery", this.form.query);
@@ -247,7 +236,6 @@ export default {
       }
     },
     onSearch() {
-      //checks if the a query inserted.
       this.results = [];
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
